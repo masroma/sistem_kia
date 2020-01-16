@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Codeigniter CRUD Generator 1.4 by [harviacode.com](http://harviacode.com)#
 
 ## About : ##
@@ -66,3 +67,7 @@ V.1.1 - 21 May 2015
 * Add client side datatables
 
 **Copyright 2015 [harviacode.com](http://harviacode.com)**
+=======
+# sistem_kia
+Sistem pengajuan KIA bagi anak yang baru lahir
+>>>>>>> 6e150f418b397330a0a8a2c87417236729fe8240
