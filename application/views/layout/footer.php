@@ -29,6 +29,8 @@
 <script src="<?php echo base_url();?>assets/backend/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/backend/dist/js/demo.js"></script>
+
+<script src="<?php echo base_url();?>assets/backend/plugins/chart.js/Chart.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url();?>assets/backend/plugins/select2/js/select2.full.min.js"></script>
 <script>

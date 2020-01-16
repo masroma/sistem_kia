@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/backend/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   <link rel="stylesheet" href="<?php echo base_url();?>assets/backend/plugins/jqvmap/jqvmap.min.css">
 
   <link rel="stylesheet" href="<?php echo base_url();?>assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- Theme style -->
@@ -174,6 +175,13 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+           <?php if($this->session->userdata('ses_akses') == '1') { ?>
+          <li class="nav-item">
+            <a href="<?php echo base_url();?>Dashboard" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Dashboards</p>
+            </a>
+          </li>
             <li class="nav-item">
             <a href="<?php echo base_url();?>data_dokter" class="nav-link">
               <i class="far fa-dot-circle nav-icon"></i>
@@ -201,9 +209,94 @@
            <li class="nav-item">
             <a href="<?php echo base_url();?>data_users" class="nav-link">
               <i class="far fa-dot-circle nav-icon"></i>
-              <p>Data Pengajuan User</p>
+              <p>Data User</p>
             </a>
           </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>auth/logout" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+        <?php } else if($this->session->userdata('ses_akses') == '2') { ?>
+             <li class="nav-item">
+            <a href="<?php echo base_url();?>data_dokter" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Dokter</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>auth/logout" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+        <?php } else if($this->session->userdata('ses_akses') == '3') { ?>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>data_orangtua" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Orang Tua</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url();?>data_kia" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Pengajuan KIA</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>auth/logout" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+        <?php } else if($this->session->userdata('ses_akses') == '4') { ?>
+
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>data_anak" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Anak</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>data_orangtua" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Orang Tua</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url();?>data_kia" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Pengajuan KIA</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>auth/logout" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+
+        <?php } else if($this->session->userdata('ses_akses') == '5') { ?>
+              <li class="nav-item">
+            <a href="<?php echo base_url();?>data_orangtua" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Orang Tua</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url();?>data_kia" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Data Pengajuan KIA</p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?php echo base_url();?>auth/logout" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+        <?php } ?>
        
         </ul>
       </nav>

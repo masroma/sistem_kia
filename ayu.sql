@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2020 at 03:42 AM
+-- Generation Time: Jan 16, 2020 at 01:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -144,7 +144,7 @@ CREATE TABLE `data_kia` (
 INSERT INTO `data_kia` (`id_kis`, `kode_anak`, `id_orangtua`, `nik_bayi`, `agama`, `gol_darah`, `photo_anak`, `photo_kk`, `photo_akta_kelahiran`, `photo_ktp_ayah`, `photo_ktp_ibu`, `status`) VALUES
 (1, '7687985', 4, '1234567890098765', 'islam', 'A', '', '', '', '', '', 0),
 (2, '9612696', 3, '9876543216273618', 'islam', 'B', '', '', '', '', '', 0),
-(5, '7687985', 4, '8764857362536475', 'hindu', 'AB', 'baby5.jpg', 'kkku.jpeg', 'akta3.jpg', 'ktp_ayah5.jpeg', 'ktp_ibu5.JPG', 0);
+(5, '7687985', 4, '8764857362536475', 'hindu', 'AB', 'baby5.jpg', 'kk11.jpg', 'akta3.jpg', 'ktp_ayah5.jpeg', 'ktp_ibu5.JPG', 0);
 
 -- --------------------------------------------------------
 
@@ -183,6 +183,7 @@ CREATE TABLE `data_users` (
   `email` varchar(100) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
+  `whatsapp` varchar(14) NOT NULL,
   `akses_level` int(20) NOT NULL,
   `tanggal_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -191,12 +192,12 @@ CREATE TABLE `data_users` (
 -- Dumping data for table `data_users`
 --
 
-INSERT INTO `data_users` (`id_user`, `nama`, `email`, `username`, `password`, `akses_level`, `tanggal_update`) VALUES
-(4, 'superadmin', 'superadmin@gmail.com', 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', 1, '2020-01-14 17:00:00'),
-(5, 'Perugas Rumah sakit', 'petugasrumahsakit@gmail.com', 'petugas rumah sakit', 'ebed0917750034bb033f4fc2321dbc2d', 2, '2020-01-14 20:19:12'),
-(6, 'perugas kelurahan', 'petugaskelurahan@gmail.com', 'petugas kelurahan', '56f6189cf064a8736e3af760c8f061ce', 3, '2020-01-14 20:20:21'),
-(7, 'diskupcapil', 'diskupcapil@gmail.com', 'diskupcapil', '3afdffb666a8d51d72143255227ef9d2', 4, '2020-01-14 20:21:19'),
-(8, 'user', 'user@gmail.com', 'user', 'b5b73fae0d87d8b4e2573105f8fbe7bc', 5, '2020-01-14 20:22:24');
+INSERT INTO `data_users` (`id_user`, `nama`, `email`, `username`, `password`, `whatsapp`, `akses_level`, `tanggal_update`) VALUES
+(4, 'superadmin', 'superadmin@gmail.com', 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', '', 1, '2020-01-14 17:00:00'),
+(5, 'Perugas Rumah sakit', 'petugasrumahsakit@gmail.com', 'petugas rumah sakit', 'ebed0917750034bb033f4fc2321dbc2d', '', 2, '2020-01-14 20:19:12'),
+(6, 'perugas kelurahan', 'petugaskelurahan@gmail.com', 'petugas kelurahan', '56f6189cf064a8736e3af760c8f061ce', '', 3, '2020-01-14 20:20:21'),
+(7, 'diskupcapil', 'diskupcapil@gmail.com', 'diskupcapil', '3afdffb666a8d51d72143255227ef9d2', '', 4, '2020-01-14 20:21:19'),
+(8, 'user', 'user@gmail.com', 'user', 'b5b73fae0d87d8b4e2573105f8fbe7bc', '', 5, '2020-01-14 20:22:24');
 
 --
 -- Indexes for dumped tables
@@ -253,7 +254,7 @@ ALTER TABLE `data_users`
 -- AUTO_INCREMENT for table `data_agama`
 --
 ALTER TABLE `data_agama`
-  MODIFY `id_agama` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_agama` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `data_anak`
@@ -265,7 +266,7 @@ ALTER TABLE `data_anak`
 -- AUTO_INCREMENT for table `data_darah`
 --
 ALTER TABLE `data_darah`
-  MODIFY `id_darah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_darah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `data_dokter`
