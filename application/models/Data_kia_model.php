@@ -22,6 +22,21 @@ class Data_kia_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_data_usia_bykode($kode_anak){
+        $hsl=$this->db->query("SELECT * FROM data_anak WHERE kode_unik='$kode_anak'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil= array(
+                    'kode_anak' => $data->kode_anak,
+                    'usia' => $data->usia,
+                    'nama_anak' => $data->nama_anak,
+                    'jenis_kelamin' => $data->jenis_kelamin,
+                    );
+            }
+        }
+        return $hasil;
+    }
+
     // get data by id
     function get_by_id($id)
     {

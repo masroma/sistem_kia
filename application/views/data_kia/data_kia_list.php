@@ -38,8 +38,7 @@
 		<th>Kode Anak</th>
 		<th>Id Orangtua</th>
 		<th>Nik Bayi</th>
-		<th>Agama</th>
-		<th>Gol Darah</th>
+	 <th>Keterangan</th>
 		
 		<th>Action</th>
             </tr>
@@ -54,8 +53,35 @@
 			<td><?php echo $data_kia->kode_anak ?></td>
 			<td><?php echo $data_kia->id_orangtua ?></td>
 			<td><?php echo $data_kia->nik_bayi ?></td>
-			<td><?php echo $data_kia->agama ?></td>
-			<td><?php echo $data_kia->gol_darah ?></td>
+			<td align="center">
+        <?php if($data_kia->photo_anak == NULL) { ?>
+          <ul>
+            <span class="badge badge-danger"><?php echo 'photo anak masih kosong'?></span>
+          <?php } else if($data_kia->photo_kk == NULL) { ?>
+             <span class="badge badge-danger"><?php echo 'photo KK masih kosong'?></span>
+          <?php } else if($data_kia->photo_akta_kelahiran == NULL) { ?>
+            <span class="badge badge-danger"><?php echo 'photo photo akta kelahiran masih kosong'?></span>
+           <?php } else if($data_kia->photo_ktp_ayah == NULL) { ?>
+            <span class="badge badge-danger"> <?php echo 'photo photo KTP Ayah masih kosong'?></span>
+          <?php } else if($data_kia->photo_ktp_ibu == NULL) { ?>
+             <span class="badge badge-danger"><?php echo 'photo photo KTP Ibu masih kosong'?></span>
+          <?php } else { ?>
+            <?php if($data_kia->status == 0){ ?>
+              <?php if($this->session->userdata('ses_akses') == '4'){ ?>
+               <form action="<?php echo base_url();?>Data_kia/update_status" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id_kis" value="<?php echo $data_kia->id_kis; ?>" /> 
+                  <input type="hidden" name="status" value="1" /> 
+                    <button type="submit" class="btn btn-primary btn-sm">Validasi </button> 
+              <?php } else { ?>
+                 <span class="badge badge-primary"><?php echo 'Menunggu persetujuan'?></span>
+              <?php } ?>
+              </form>
+            <?php } else { ?>
+                <span class="badge badge-success"><?php echo 'Data sudah diterima'?></span>
+              <?php } ?>
+          <?php } ?>
+        </ul>
+      </td>
 		
 			<td style="text-align:center" width="200px">
 				<?php 
@@ -77,8 +103,7 @@
 		<th>Kode Anak</th>
 		<th>Id Orangtua</th>
 		<th>Nik Bayi</th>
-		<th>Agama</th>
-		<th>Gol Darah</th>
+	
 		<th>Action</th>
             </tr>
                 </tfoot>

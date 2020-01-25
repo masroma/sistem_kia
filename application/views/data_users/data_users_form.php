@@ -35,6 +35,10 @@
             <label for="varchar">Nama <?php echo form_error('nama') ?></label>
             <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
         </div>
+         <div class="form-group">
+            <label for="varchar">NIK KTP <?php echo form_error('ktp') ?></label>
+            <input type="text" class="form-control" maxlength="16" name="ktp" id="ktp" placeholder="ktp" value="<?php echo $ktp; ?>" />
+        </div>
 	    <div class="form-group">
             <label for="varchar">Email <?php echo form_error('email') ?></label>
             <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" />
@@ -42,6 +46,10 @@
 	    <div class="form-group">
             <label for="varchar">Username <?php echo form_error('username') ?></label>
             <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" />
+        </div>
+         <div class="form-group">
+            <label for="varchar">Whatsapp (08xxxx) <?php echo form_error('whatsapp') ?></label>
+            <input type="number" maxlength="13" class="form-control" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="<?php echo $whatsapp; ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Password <?php echo form_error('password') ?></label>

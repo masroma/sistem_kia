@@ -32,6 +32,7 @@
             <div class="card-body">
                  <table class="table">
 	   <tr><td>Nama</td><td><?php echo $nama; ?></td></tr>
+      <tr><td>NIK KTP</td><td><?php echo $ktp; ?></td></tr>
 	    <tr><td>Email</td><td><?php echo $email; ?></td></tr>
 	    <tr><td>Username</td><td><?php echo $username; ?></td></tr>
 	    <tr><td>Password</td><td><?php echo $password; ?></td></tr>

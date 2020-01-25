@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2020 at 01:28 AM
+-- Generation Time: Jan 25, 2020 at 06:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -68,7 +68,7 @@ CREATE TABLE `data_anak` (
 
 INSERT INTO `data_anak` (`id_anak`, `id_dokter`, `nama_klinik`, `nama_anak`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `usia`, `kode_unik`) VALUES
 (3, 2, 'klinik cahaya', 'muhammad riki utama', 'jakarta', '2020-01-01', 'pria', 1, '9612696'),
-(4, 2, 'dukun beranak', 'riantoro', 'jakarta', '2020-01-11', 'pria', 1, '7687985');
+(4, 3, 'dukun beranak', 'riantoro', 'jakarta', '2020-01-11', 'wanita', 6, '7687985');
 
 -- --------------------------------------------------------
 
@@ -129,11 +129,13 @@ CREATE TABLE `data_kia` (
   `nik_bayi` varchar(100) NOT NULL,
   `agama` varchar(20) NOT NULL,
   `gol_darah` varchar(2) NOT NULL,
+  `usia` int(11) NOT NULL,
   `photo_anak` varchar(250) NOT NULL,
   `photo_kk` varchar(250) NOT NULL,
   `photo_akta_kelahiran` varchar(250) NOT NULL,
   `photo_ktp_ayah` varchar(250) NOT NULL,
   `photo_ktp_ibu` varchar(250) NOT NULL,
+  `tanggal_pengajuan` date NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -141,10 +143,10 @@ CREATE TABLE `data_kia` (
 -- Dumping data for table `data_kia`
 --
 
-INSERT INTO `data_kia` (`id_kis`, `kode_anak`, `id_orangtua`, `nik_bayi`, `agama`, `gol_darah`, `photo_anak`, `photo_kk`, `photo_akta_kelahiran`, `photo_ktp_ayah`, `photo_ktp_ibu`, `status`) VALUES
-(1, '7687985', 4, '1234567890098765', 'islam', 'A', '', '', '', '', '', 0),
-(2, '9612696', 3, '9876543216273618', 'islam', 'B', '', '', '', '', '', 0),
-(5, '7687985', 4, '8764857362536475', 'hindu', 'AB', 'baby5.jpg', 'kk11.jpg', 'akta3.jpg', 'ktp_ayah5.jpeg', 'ktp_ibu5.JPG', 0);
+INSERT INTO `data_kia` (`id_kis`, `kode_anak`, `id_orangtua`, `nik_bayi`, `agama`, `gol_darah`, `usia`, `photo_anak`, `photo_kk`, `photo_akta_kelahiran`, `photo_ktp_ayah`, `photo_ktp_ibu`, `tanggal_pengajuan`, `status`) VALUES
+(1, '7687985', 4, '1234567890098765', 'islam', 'A', 0, '', '', '', '', '', '2020-01-01', 0),
+(2, '9612696', 3, '9876543216273618', 'islam', 'B', 1, 'baby5.jpg', '', '', '', '', '2020-01-07', 0),
+(5, '7687985', 4, '8764857362536475', 'hindu', 'AB', 1, 'baby5.jpg', 'kk11.jpg', 'akta3.jpg', 'ktp_ayah5.jpeg', 'ktp_ibu5.JPG', '2020-01-21', 1);
 
 -- --------------------------------------------------------
 
@@ -180,6 +182,7 @@ INSERT INTO `data_orangtua` (`id_orangtua`, `nik_ayah`, `nama_ayah`, `nik_ibu`, 
 CREATE TABLE `data_users` (
   `id_user` int(255) NOT NULL,
   `nama` varchar(50) NOT NULL,
+  `ktp` varchar(16) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
@@ -192,12 +195,16 @@ CREATE TABLE `data_users` (
 -- Dumping data for table `data_users`
 --
 
-INSERT INTO `data_users` (`id_user`, `nama`, `email`, `username`, `password`, `whatsapp`, `akses_level`, `tanggal_update`) VALUES
-(4, 'superadmin', 'superadmin@gmail.com', 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', '', 1, '2020-01-14 17:00:00'),
-(5, 'Perugas Rumah sakit', 'petugasrumahsakit@gmail.com', 'petugas rumah sakit', 'ebed0917750034bb033f4fc2321dbc2d', '', 2, '2020-01-14 20:19:12'),
-(6, 'perugas kelurahan', 'petugaskelurahan@gmail.com', 'petugas kelurahan', '56f6189cf064a8736e3af760c8f061ce', '', 3, '2020-01-14 20:20:21'),
-(7, 'diskupcapil', 'diskupcapil@gmail.com', 'diskupcapil', '3afdffb666a8d51d72143255227ef9d2', '', 4, '2020-01-14 20:21:19'),
-(8, 'user', 'user@gmail.com', 'user', 'b5b73fae0d87d8b4e2573105f8fbe7bc', '', 5, '2020-01-14 20:22:24');
+INSERT INTO `data_users` (`id_user`, `nama`, `ktp`, `email`, `username`, `password`, `whatsapp`, `akses_level`, `tanggal_update`) VALUES
+(4, 'superadmin', '', 'superadmin@gmail.com', 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', '', 1, '2020-01-14 17:00:00'),
+(5, 'Perugas Rumah sakit', '', 'petugasrumahsakit@gmail.com', 'petugas rumah sakit', 'ebed0917750034bb033f4fc2321dbc2d', '', 2, '2020-01-14 20:19:12'),
+(6, 'perugas kelurahan', '', 'petugaskelurahan@gmail.com', 'petugas kelurahan', '56f6189cf064a8736e3af760c8f061ce', '', 3, '2020-01-14 20:20:21'),
+(7, 'diskupcapil', '', 'diskupcapil@gmail.com', 'diskupcapil', '3afdffb666a8d51d72143255227ef9d2', '', 4, '2020-01-14 20:21:19'),
+(8, 'user', '', 'user@gmail.com', 'user', 'b5b73fae0d87d8b4e2573105f8fbe7bc', '', 5, '2020-01-14 20:22:24'),
+(9, 'jono', '9837464848574857', 'jonoganteng@gmail.com', 'jonoganteng', '4e704957c887599668f1b1c9d897c40f', '', 5, '2020-01-24 18:49:40'),
+(10, 'jini', '7364746486383684', 'jinicantik@gmail.com', 'jinicantik', '250aea522cb5889e7c4a7a9c421eafcb', '081217388495', 5, '2020-01-24 19:01:31'),
+(11, 'rinjani amalia', '8347328957248574', 'rinjanicantik@gmail.com', 'rinjanicantik', '82a15bdb6dc9f3c7abb54aa6a7403029', '0817326454757', 5, '2020-01-24 19:24:05'),
+(12, 'anjani', '8237198347329524', 'anjani@gmail.com', 'anjani', '15dcb3093711564b7b7e6e9be95a9968', '0939483948', 5, '2020-01-24 19:28:00');
 
 --
 -- Indexes for dumped tables
@@ -290,7 +297,7 @@ ALTER TABLE `data_orangtua`
 -- AUTO_INCREMENT for table `data_users`
 --
 ALTER TABLE `data_users`
-  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

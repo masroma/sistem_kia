@@ -5,8 +5,8 @@ class Auth extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
-        $this->load->model('m_auth');
-        $this->load->library('Form_validation','database');
+        $this->load->model(array('m_auth','Data_users_model'));
+        $this->load->library('form_validation','database');
         $this->load->helper(array('Form', 'Cookie', 'String','url'));
     }
 
@@ -128,94 +128,49 @@ class Auth extends CI_Controller {
 
 	public function register()
 	{
-		
-		$this->load->view('auth/register');
+		 $data = array(
+            'button' => 'Create',
+            'action' => site_url('data_users/create_action'),
+	    'id_user' => set_value('id_user'),
+	    'nama' => set_value('nama'),
+         'whatsapp' => set_value('whatsapp'),
+         'ktp' => set_value('ktp'),
+	    'email' => set_value('email'),
+	    'username' => set_value('username'),
+	    'password' => set_value('password'),
+	    'akses_level' => set_value('akses_level'),
+	    'tanggal_update' => set_value('tanggal_update'),
+	);
+		$this->load->view('auth/register',$data);
 		
 	}
 
 	public function proses_register()
 	{
-    //passing post data dari view
-		   
-		    $nama = $this->input->post('nama');
-		    $whatsapp = $this->input->post('whatsapp');
-		    $password = md5($this->input->post('password'));
-			$email = $this->input->post('email');
-			$akses = 'donatur';
-			
-			$sql = $this->db->query("SELECT * FROM user where email='$email' OR whatsapp = '$whatsapp' ");
-			$cek_email = $sql->num_rows();
-			
-			if($cek_email > 0)
-		    {
-		       $this->session->set_flashdata('msg', 
-                '<div class="alert alert-danger">
-                	<h4>pendagtaran gagal</h4>
-                    <p class="text-alert">email atau no whatsapp sudah terdaftar, silahkan LOGIN</p>
-                </div>');    
-			 redirect('auth/register');
-			}
-		    //memasukan ke array
-		    $data = array(
-		     'nama' => $nama,
-		     'password' => $password,
-		     'whatsapp' => $whatsapp,
-			 'email' => $email,
-			 'saldo' => 0,
-			 'active' => 0,
-			 'akses'=>$akses
-		     );
+   
+		        $this->_rules();
 
-		    $id = $this->m_auth->add_account($data);
+		        if ($this->form_validation->run() == FALSE) {
+		            $this->register();
+		        } else {
+		            $data = array(
+				'nama' => $this->input->post('nama',TRUE),
+		        'whatsapp' => $this->input->post('whatsapp',TRUE),
+		        'ktp' => $this->input->post('ktp',TRUE),
+				'email' => $this->input->post('email',TRUE),
+				'username' => $this->input->post('username',TRUE),
+				'password' => md5($this->input->post('password',TRUE)),
+				'akses_level' => $this->input->post('akses_level',TRUE),
+				'tanggal_update' => $this->input->post('tanggal_update',TRUE),
+			    );
+		           // var_dump($data); exit;
+
+		            $this->Data_users_model->insert($data);
+		            $this->session->set_flashdata('message', '<div class="alert alert-success">Create Record Success</div>');
+		            redirect('auth');
+		        }
 		  
-		    //enkripsi id
-		    $encrypted_id = md5($id);
-		  
-		    $this->load->library('email');
-		    $config = array();
-		    $config['charset'] = 'utf-8';
-		    $config['useragent'] = 'Codeigniter';
-		    $config['protocol']= "smtp";
-		    $config['mailtype']= "html";
-		    $config['smtp_host']= "ssl://smtp.gmail.com";//pengaturan smtp
-		    $config['smtp_port']= "465";
-		    $config['smtp_timeout']= "400";
-		    $config['smtp_user']= "mromadhon75@gmail.com"; // isi dengan email kamu
-		    $config['smtp_pass']= "Amanah@123"; // isi dengan password kamu
-		    $config['crlf']="\r\n"; 
-		    $config['newline']="\r\n"; 
-		    $config['wordwrap'] = TRUE;
-		    //memanggil library email dan set konfigurasi untuk pengiriman email
-		   
-		    $this->email->initialize($config);
-		    //konfigurasi pengiriman
-		    $this->email->from($config['smtp_user']);
-		    $this->email->to($email);
-		    $this->email->subject("Verifikasi Akun");
-		    $this->email->message(
-		     "terimakasih telah melakuan registrasi, untuk memverifikasi silahkan klik tautan dibawah ini<br><br>".
-		      site_url("auth/verification/$encrypted_id")
-		    );
-		  
-		    if($this->email->send())
-		    {
-		       $this->session->set_flashdata('msg', 
-                '<div class="alert alert-success">
-                	<h4>pendagtaran berhasil</h4>
-					<p class="text-alert">silahkan lakukan verifikasi di email anda</p>
-                </div>');    
-			 redirect('auth/register');
-		    }else
-		    {
-		     $this->session->set_flashdata('msg', 
-                '<div class="alert alert-danger">
-                	<h4>pendagtaran berhasil</h4>
-                    <p class="text-alert">silahkan lakukan verifikasi di email anda</p>
-                </div>');    
-			 redirect('auth/register');
-		    }
-		  
-		  
+			
 		}
 
 		public function proses_lupa_password()
@@ -398,4 +353,19 @@ class Auth extends CI_Controller {
 		    $this->session->sess_destroy();
 		    redirect('auth');
 	  	}
+
+	  	 public function _rules() 
+		    {
+			$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+		    $this->form_validation->set_rules('ktp', 'ktp', 'trim|required|is_unique[data_users.ktp]|min_length[16]|max_length[16]');
+			$this->form_validation->set_rules('email', 'email', 'trim|required|is_unique[data_users.email]');
+			$this->form_validation->set_rules('username', 'username', 'trim|required');
+		    $this->form_validation->set_rules('whatsapp', 'whatsapp', 'trim|required|is_unique[data_users.whatsapp]|max_length[13]');
+			$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('akses_level', 'akses level', 'trim|required');
+			$this->form_validation->set_rules('tanggal_update', 'tanggal update', 'trim|required');
+
+			//$this->form_validation->set_rules('id_user', 'id_user', 'trim');
+			$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+		    }
 }

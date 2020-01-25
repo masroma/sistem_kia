@@ -55,6 +55,7 @@ class Data_kia extends CI_Controller
             'id_orangtua' => $row->id_orangtua,
             'nik_bayi' => $row->nik_bayi,
             'agama' => $row->agama,
+            'agama' => $row->usia,
             'gol_darah' => $row->gol_darah,
             'photo_anak' => $row->photo_anak,
             'photo_kk' => $row->photo_kk,
@@ -85,6 +86,7 @@ class Data_kia extends CI_Controller
             'id_orangtua' => set_value('id_orangtua'),
             'nik_bayi' => set_value('nik_bayi'),
             'agama' => set_value('agama'),
+            'usia' => set_value('usia'),
             'gol_darah' => set_value('gol_darah'),
             'photo_anak' => set_value('photo_anak'),
             'photo_kk' => set_value('photo_kk'),
@@ -135,6 +137,7 @@ class Data_kia extends CI_Controller
             'id_orangtua' => $this->input->post('id_orangtua',TRUE),
             'nik_bayi' => $this->input->post('nik_bayi',TRUE),
             'agama' => $this->input->post('agama',TRUE),
+            'usia' => $this->input->post('usia',TRUE),
             'gol_darah' => $this->input->post('gol_darah',TRUE),
             'photo_anak' =>  $photo_anak,
             'photo_kk' => $photo_kk,
@@ -168,6 +171,7 @@ class Data_kia extends CI_Controller
                 'id_orangtua' => set_value('id_orangtua', $row->id_orangtua),
                 'nik_bayi' => set_value('nik_bayi', $row->nik_bayi),
                 'agama' => set_value('agama', $row->agama),
+                'usia' => set_value('usia', $row->usia),
                 'gol_darah' => set_value('gol_darah', $row->gol_darah),
                 'photo_anak' => set_value('photo_anak', $row->photo_anak),
                 'photo_kk' => set_value('photo_kk', $row->photo_kk),
@@ -240,6 +244,7 @@ class Data_kia extends CI_Controller
 		'id_orangtua' => $this->input->post('id_orangtua',TRUE),
 		'nik_bayi' => $this->input->post('nik_bayi',TRUE),
 		'agama' => $this->input->post('agama',TRUE),
+        'usia' => $this->input->post('usia',TRUE),
 		'gol_darah' => $this->input->post('gol_darah',TRUE),
 		'photo_anak' => $photo_anak,
 		'photo_kk' => $photo_kk,
@@ -255,6 +260,15 @@ class Data_kia extends CI_Controller
             redirect(site_url('data_kia'));
         }
     }
+
+    public function update_status(){
+         $id_kis =$this->input->post('id_kis');
+          $status =$this->input->post('status');
+        $this->db->set('status', $status);
+        $this->db->where('id_kis', $id_kis);
+        $this->db->update('data_kia'); 
+        redirect(site_url('data_kia'));
+    }
     
     public function delete($id) 
     {
@@ -269,6 +283,8 @@ class Data_kia extends CI_Controller
             redirect(site_url('data_kia'));
         }
     }
+
+    
 
     public function _rules() 
     {

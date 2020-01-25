@@ -39,6 +39,9 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                       <p>Aplikasi pengajuan Kartu Identitas Anak</p>
+                      <div style="margin-top: 8px" id="message">
+                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                </div>
                   </div>
                   <form class="user" action="<?php echo base_url();?>Auth/proses_login" method="post">
                     <div class="form-group">

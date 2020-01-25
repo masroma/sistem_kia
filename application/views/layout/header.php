@@ -212,6 +212,12 @@
               <p>Data User</p>
             </a>
           </li>
+            <li class="nav-item">
+            <a href="<?php echo base_url();?>laporan" class="nav-link">
+              <i class="far fa-dot-circle nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          </li>
            <li class="nav-item">
             <a href="<?php echo base_url();?>auth/logout" class="nav-link">
               <i class="far fa-dot-circle nav-icon"></i>

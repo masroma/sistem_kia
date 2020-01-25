@@ -52,6 +52,8 @@ class Data_users extends CI_Controller
             $data = array(
 		'id_user' => $row->id_user,
 		'nama' => $row->nama,
+        'ktp' => $row->ktp,
+         'whatsapp' => $row->whatsapp,
 		'email' => $row->email,
 		'username' => $row->username,
 		'password' => $row->password,
@@ -74,6 +76,8 @@ class Data_users extends CI_Controller
             'action' => site_url('data_users/create_action'),
 	    'id_user' => set_value('id_user'),
 	    'nama' => set_value('nama'),
+         'whatsapp' => set_value('whatsapp'),
+         'ktp' => set_value('ktp'),
 	    'email' => set_value('email'),
 	    'username' => set_value('username'),
 	    'password' => set_value('password'),
@@ -95,6 +99,8 @@ class Data_users extends CI_Controller
         } else {
             $data = array(
 		'nama' => $this->input->post('nama',TRUE),
+        'whatsapp' => $this->input->post('whatsapp',TRUE),
+        'ktp' => $this->input->post('ktp',TRUE),
 		'email' => $this->input->post('email',TRUE),
 		'username' => $this->input->post('username',TRUE),
 		'password' => md5($this->input->post('password',TRUE)),
@@ -118,6 +124,8 @@ class Data_users extends CI_Controller
                 'action' => site_url('data_users/update_action'),
 		'id_user' => set_value('id_user', $row->id_user),
 		'nama' => set_value('nama', $row->nama),
+        'whatsapp' => set_value('whatsapp', $row->whatsapp),
+        'ktp' => set_value('ktp', $row->ktp),
 		'email' => set_value('email', $row->email),
 		'username' => set_value('username', $row->username),
 		'password' => set_value('password', $row->password),
@@ -150,6 +158,8 @@ class Data_users extends CI_Controller
         } else {
             $data = array(
 		'nama' => $this->input->post('nama',TRUE),
+        'whatsapp' => $this->input->post('whatsapp',TRUE),
+        'ktp' => $this->input->post('ktp',TRUE),
 		'email' => $this->input->post('email',TRUE),
 		'username' => $this->input->post('username',TRUE),
 		'password' => $password,
@@ -180,8 +190,10 @@ class Data_users extends CI_Controller
     public function _rules() 
     {
 	$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+    $this->form_validation->set_rules('ktp', 'ktp', 'trim|required|is_unique[data_users.ktp]|min_length[16]|max_length[16]');
 	$this->form_validation->set_rules('email', 'email', 'trim|required|is_unique[data_users.email]');
 	$this->form_validation->set_rules('username', 'username', 'trim|required');
+    $this->form_validation->set_rules('whatsapp', 'whatsapp', 'trim|required|is_unique[data_users.whatsapp]|max_length[13]');
 	$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]');
 	$this->form_validation->set_rules('akses_level', 'akses level', 'trim|required');
 	$this->form_validation->set_rules('tanggal_update', 'tanggal update', 'trim|required');

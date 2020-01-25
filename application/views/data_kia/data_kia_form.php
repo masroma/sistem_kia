@@ -1,4 +1,16 @@
 
+ <script>
+  function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
+}
+</script>
+<style>
+  #photoanak {
+    display: none;
+}
+</style>
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,13 +46,23 @@
 	    <div class="form-group">
             <label for="varchar">Kode Anak <?php echo form_error('kode_anak') ?></label>
            
-            <select name="kode_anak" class="form-control select2" style="width: 100%;" value="<?php echo $kode_anak; ?>">
+            <select name="kode_anak" id="kode_anak" class="form-control select2"  style="width: 100%;" value="<?php echo $kode_anak; ?>">
+              <option value="">Kode Unik Anak</option>
               <?php foreach($data_anak as $row ) { ?>
                    <option <?php if($row->kode_unik == $kode_anak){ echo 'selected="selected"'; } ?> value="<?php echo $row->kode_unik ?>"><?php echo $row->kode_unik;?> - <?php echo $row->nama_anak;?> </option>
-                 
               <?php }?>
-              </select>
-        </div>
+                </select>
+              </div>
+               
+              <div class="form-group">
+            <label for="varchar">Usia</label>
+         
+            <select name="usia" id="usia" class="form-control" onchange="showDiv('photoanak', this)" style="width: 100%;" value="<?php echo $usia; ?>">
+              <option value="" <?php if($row->usia == $usia){ echo 'selected="selected"'; } ?> >umur anak</option>
+              <option value="0" <?php if($row->usia== $usia){ echo 'selected="selected"'; } ?> >di bawah 5 Tahun</option>
+               <option value="1" <?php if($row->usia== $usia){ echo 'selected="selected"'; } ?> >di atas 5 Tahun</option>
+                </select>
+              </div>
 	    <div class="form-group">
             <label for="int">Id Orangtua (ayah) <?php echo form_error('id_orangtua') ?></label>
            
@@ -73,7 +95,7 @@
               <?php }?>
             </select>
         </div>
-	    <div class="form-group">
+	    <div class="form-group" id="photoanak">
                <?php if($photo_anak != null) { ?>
                    <img src="<?php echo base_url();?>assets/kia/<?php echo $photo_anak;?>" width="150px"/>
                <?php } else { ?>
@@ -161,4 +183,4 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper
+ 

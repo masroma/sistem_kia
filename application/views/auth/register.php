@@ -41,17 +41,31 @@
                       <p>Silahkan isi form dibawah ini untuk pendaftaran</p>
                   </div>
                   <form class="user" action="<?php echo base_url();?>Auth/proses_register" method="post">
+                    <div class="form-group">
+                       <?php echo form_error('ktp') ?>
+                      <input type="text" class="form-control form-control-user" maxlength="16" name="ktp" id="ktp" placeholder="ktp" value="<?php echo $ktp; ?>" />
+                    </div>
                      <div class="form-group">
-                      <input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
+                       <?php echo form_error('nama') ?>
+                       <input type="text" class="form-control form-control-user" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
+                    </div>
+                     <div class="form-group">
+                       <?php echo form_error('username') ?>
+                       <input type="text" class="form-control form-control-user" name="username" id="username" placeholder="username" value="<?php echo $username; ?>" />
                     </div>
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
+                       <?php echo form_error('email') ?>
+                      <input type="text" class="form-control form-control-user" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" />
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                       <?php echo form_error('password') ?>
+                     <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
                     </div>
                     <div class="form-group">
-                      <input type="number" name="whatsapp" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="no whatsapp">
+                       <?php echo form_error('whatsapp') ?>
+                      <input type="number" name="whatsapp" class="form-control form-control-user" value="<?php echo $whatsapp; ?>"  placeholder="no whatsapp">
+                       <input type="hidden" class="form-control" name="akses_level" id="akses_level" placeholder="Akses Level" value="5">
+                         <input type="hidden" class="form-control" name="tanggal_update" id="tanggal_update" placeholder="Tanggal Update" value="<?php echo date('Y-m-d h:i:sa') ?>" />
                     </div>
                     <!-- <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -60,7 +74,7 @@
                       </div>
                     </div> -->
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                      Login
+                      Daftar
                     </button>
                    <!--  <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
