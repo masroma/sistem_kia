@@ -34,6 +34,7 @@ class Data_orangtua extends CI_Controller
         $this->pagination->initialize($config);
 
         $data = array(
+            'data_by_user' => $this->Data_orangtua_model->get_by_ktp(),
             'data_orangtua_data' => $data_orangtua,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
@@ -50,7 +51,8 @@ class Data_orangtua extends CI_Controller
         $row = $this->Data_orangtua_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_orangtua' => $row->id_orangtua,
+        'id_orangtua' => $row->id_orangtua,
+        'email' => $this->session->userdata('ses_email'),
 		'nik_ayah' => $row->nik_ayah,
 		'nama_ayah' => $row->nama_ayah,
 		'nik_ibu' => $row->nik_ibu,
@@ -73,7 +75,8 @@ class Data_orangtua extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('data_orangtua/create_action'),
-	    'id_orangtua' => set_value('id_orangtua'),
+        'id_orangtua' => set_value('id_orangtua'),
+        'email' => $this->session->userdata('ses_email'),
 	    'nik_ayah' => set_value('nik_ayah'),
         'data_agama' =>  $this->Data_agama_model->get_all(),
 	    'nama_ayah' => set_value('nama_ayah'),
@@ -96,6 +99,7 @@ class Data_orangtua extends CI_Controller
             $this->create();
         } else {
             $data = array(
+        'email' => $this->session->userdata('ses_email'),
 		'nik_ayah' => $this->input->post('nik_ayah',TRUE),
 		'nama_ayah' => $this->input->post('nama_ayah',TRUE),
 		'nik_ibu' => $this->input->post('nik_ibu',TRUE),
@@ -119,7 +123,8 @@ class Data_orangtua extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('data_orangtua/update_action'),
-		'id_orangtua' => set_value('id_orangtua', $row->id_orangtua),
+        'id_orangtua' => set_value('id_orangtua', $row->id_orangtua),
+        'email' => $this->session->userdata('ses_email'),
         'data_agama' =>  $this->Data_agama_model->get_all(),
 		'nik_ayah' => set_value('nik_ayah', $row->nik_ayah),
 		'nama_ayah' => set_value('nama_ayah', $row->nama_ayah),
@@ -146,6 +151,7 @@ class Data_orangtua extends CI_Controller
             $this->update($this->input->post('id_orangtua', TRUE));
         } else {
             $data = array(
+        'email' => $this->session->userdata('ses_email'),
 		'nik_ayah' => $this->input->post('nik_ayah',TRUE),
 		'nama_ayah' => $this->input->post('nama_ayah',TRUE),
 		'nik_ibu' => $this->input->post('nik_ibu',TRUE),

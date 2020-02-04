@@ -34,6 +34,7 @@ class Data_kia extends CI_Controller
         $this->pagination->initialize($config);
 
         $data = array(
+            'data_kia_email' => $this->Data_kia_model->get_by_email(),
             'data_kia_data' => $data_kia,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),

@@ -43,6 +43,32 @@ Content Wrapper. Contains page content -->
             </tr>
                 </thead>
                 <tbody>
+                <?php if($this->session->userdata('ses_akses') == '5') { ?>
+                  <?php
+            foreach ($data_by_user as $data_orangtua)
+            {
+                ?>
+                <tr>
+			<td width="80px"><?php echo ++$start ?></td>
+			<td><?php echo $data_orangtua->nik_ayah ?></td>
+			<td><?php echo $data_orangtua->nama_ayah ?></td>
+			<td><?php echo $data_orangtua->nik_ibu ?></td>
+			<td><?php echo $data_orangtua->nama_ibu ?></td>
+		
+			<td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('data_orangtua/read/'.$data_orangtua->id_orangtua),'Read','class="btn btn-primary btn-sm"'); 
+				echo ' | '; 
+				echo anchor(site_url('data_orangtua/update/'.$data_orangtua->id_orangtua),'Update', 'class="btn btn-success btn-sm"'); 
+				echo ' | '; 
+				echo anchor(site_url('data_orangtua/delete/'.$data_orangtua->id_orangtua),'Delete', 'class="btn btn-danger btn-sm"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				?>
+			</td>
+		</tr>
+                <?php
+            }
+            ?>
+                <?php } else { ?>
                 <?php
             foreach ($data_orangtua_data as $data_orangtua)
             {
@@ -67,6 +93,7 @@ Content Wrapper. Contains page content -->
                 <?php
             }
             ?>
+                <?php } ?>
                 </tbody>
                 <tfoot>
                 <tr>

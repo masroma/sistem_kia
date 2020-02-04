@@ -43,6 +43,16 @@ class Data_kia_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_by_email()
+    {
+        $email = $this->session->userdata('ses_email');
+        $this->db->where('email', $email);
+       return $this->db->get($this->table)->result();
+    }
+
+
+    
     
     // get total rows
     function total_rows($q = NULL) {

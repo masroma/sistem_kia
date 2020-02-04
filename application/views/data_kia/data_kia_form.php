@@ -75,7 +75,7 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Nik Bayi <?php echo form_error('nik_bayi') ?></label>
-            <input type="text" class="form-control" name="nik_bayi" id="nik_bayi" placeholder="Nik Bayi" value="<?php echo $nik_bayi; ?>" />
+            <input type="text" maxlength="16" class="form-control" name="nik_bayi" id="nik_bayi" placeholder="Nik Bayi" value="<?php echo $nik_bayi; ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Agama <?php echo form_error('agama') ?></label>

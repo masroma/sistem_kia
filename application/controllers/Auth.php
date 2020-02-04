@@ -93,6 +93,7 @@ class Auth extends CI_Controller {
 					 $this->session->set_userdata('masuk',TRUE);
 				$this->session->set_userdata('akses_level','5');
 				$this->session->set_userdata('ses_id',$data['id_user']);
+				$this->session->set_userdata('ses_ktp',$data['ktp']);
 				$this->session->set_userdata('ses_username',$data['username']);
 				$this->session->set_userdata('ses_email',$data['email']);
 				$this->session->set_userdata('ses_nama',$data['nama']);

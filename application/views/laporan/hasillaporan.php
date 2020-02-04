@@ -6,7 +6,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="h3 mb-2 text-gray-800">Laporan KIA</h1>
-<h5>Laporan Pendaftar Dari Tanggal <b><?php echo $tanggal_awal;?></b> sd <b><?php echo $tanggal_akhir;?></b> dan Status <?php echo $status;?></h5>
+<h5>Laporan Pendaftar Dari Tanggal <b><?php echo $tanggal_awal;?></b> sd <b><?php echo $tanggal_akhir;?></b> dan Status <?php if($status == 0){ echo "menunggu proses";} else {echo "di setujui";}?></h5>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,8 +25,14 @@
             <!-- Default box -->
             <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><?php echo anchor(site_url('data_dokter/create'),'Cetak', 'class="btn btn-primary"'); ?></h3>
-               <div style="margin-top: 8px" id="message">
+            <form action="<?php echo base_url(); ?>Laporan/cetak" method="post">
+    <input type="hidden" name="tanggal_awal" value="<?php echo $tanggal_awal;?>" >
+    <input type="hidden" name="tanggal_akhir" value="<?php echo $tanggal_akhir;?>" >
+    <input type="hidden" name="status" value="<?php echo $status;?>" >
+    <button type="submit" class="btn btn-sm btn-primary">cetak laporan</button>
+   
+    </form>
+                 <div style="margin-top: 8px" id="message">
                     <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
                 </div>
             </div>
